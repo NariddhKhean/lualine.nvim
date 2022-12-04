@@ -74,7 +74,7 @@ M.update_status = function(self)
     -- just filename
     data = vim.fn.expand('%:t')
   end
-  
+
   if string.starts(data, 'term://') then
     -- terminal
     data = '  term'
