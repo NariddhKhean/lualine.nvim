@@ -55,6 +55,10 @@ M.init = function(self, options)
   self.options = vim.tbl_deep_extend('keep', self.options or {}, default_options)
 end
 
+function string.starts(String,Start)
+  return string.sub(String,1,string.len(Start))==Start
+end
+
 M.update_status = function(self)
   local data
   if self.options.path == 1 then
@@ -69,6 +73,11 @@ M.update_status = function(self)
   else
     -- just filename
     data = vim.fn.expand('%:t')
+  end
+  
+  if string.starts(data, 'term://') then
+    -- terminal
+    data = '  term'
   end
 
   data = modules.utils.stl_escape(data)
