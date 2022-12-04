@@ -67,6 +67,7 @@ M.update_status = function(self)
   elseif self.options.path == 2 then
     -- absolute path
     data = vim.fn.expand('%:p')
+    data = string.gsub(data, os.getenv("HOME"), "")
   elseif self.options.path == 3 then
     -- absolute path, with tilde
     data = vim.fn.expand('%:p:~')
